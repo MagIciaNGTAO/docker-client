@@ -1,0 +1,28 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "State",
+    "doc": "State Model",
+    "fields": [
+        {
+            "name": "Running",
+            "type": "boolean"
+        },
+        {
+            "name": "Pid",
+            "type": "int"
+        },
+        {
+            "name": "ExitCode",
+            "type": "int"
+        },
+        {
+            "name": "StartedAt",
+            "type": "string"
+        },
+        {
+            "name": "FinishedAt",
+            "type": "string"
+        }
+    ]
+}

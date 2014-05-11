@@ -1,0 +1,153 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "ContainerConfig",
+    "doc": "ContainerConfig Model",
+    "fields": [
+        {
+            "name": "Hostname",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "Domainname",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "User",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "Memory",
+            "type": "long",
+            "default": 0
+        },
+        {
+            "name": "MemorySwap",
+            "type": "long",
+            "default": 0
+        },
+        {
+            "name": "CpuShares",
+            "type": "int",
+            "default": 0
+        },
+        {
+            "name": "AttachStdin",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "AttachStdout",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "AttachStderr",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "Tty",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "OpenStdin",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "StdinOnce",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "PortSecs",
+            "type": {
+                "type": "map",
+                "values": {
+                    "type": "map",
+                    "values": "string"
+                }
+            },
+            "default": {}
+        },
+        {
+            "name": "ExposedPorts",
+            "type": {
+                "type": "map",
+                "values": "PortBinding"
+            },
+            "default": {}
+        },
+        {
+            "name": "Env",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "Cmd",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "Image",
+            "type": "string"
+        },
+        {
+            "name": "Volumes",
+            "type": {
+                "type": "map",
+                "values": {
+                    "type": "map",
+                    "values": "string"
+                }
+            },
+            "default": {}
+        },
+        {
+            "name": "WorkingDir",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "Entrypoint",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "NetworkDisabled",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "OnBuild",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "queryParams",
+            "doc": "Query parameters associated with request.\n Used to add parameter such as 'name' when creating a container.",
+            "type": {
+                "type": "map",
+                "values": []
+            },
+            "default": {}
+        }
+    ]
+}

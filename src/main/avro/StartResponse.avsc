@@ -1,0 +1,40 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "StartResponse",
+    "doc": "StartResponse Model",
+    "fields": [
+        {
+            "name": "Binds",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "LxcConf",
+            "type": {
+                "type": "map",
+                "values": "string"
+            },
+            "default": {}
+        },
+        {
+            "name": "PortBindings",
+            "type": {
+                "type": "map",
+                "values": "PortBinding"
+            },
+            "default": {}
+        },
+        {
+            "name": "PublishAllPorts",
+            "type": "boolean"
+        },
+        {
+            "name": "Privileged",
+            "type": "boolean"
+        }
+    ]
+}

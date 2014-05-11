@@ -1,0 +1,43 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "ImageConfig",
+    "doc": "ImageConfig Model",
+    "fields": [
+        {
+            "name": "fromImage",
+            "type": "string",
+            "doc": "Name of the image to pull."
+        },
+        {
+            "name": "fromSrc",
+            "doc": "Source to import, - means stdin.",
+            "type": ["null", "string"],
+            "default": null
+        },
+        {
+            "name": "repo",
+            "type": ["null", "string"],
+            "doc": "Image repository.",
+            "default": null
+        },
+        {
+            "name": "tag",
+            "type": ["null", "string"],
+            "doc": "Image tag.",
+            "default": null
+        },
+        {
+            "name": "registry",
+            "type": ["null", "string"],
+            "doc": "Image registry to pull from.",
+            "default": null
+        },
+        {
+            "name": "xRegistryAuth",
+            "type": ["null", "string"],
+            "doc": "Base64-encoded AuthConfig object.",
+            "default": null
+        }
+    ]
+}

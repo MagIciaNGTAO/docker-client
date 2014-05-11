@@ -1,0 +1,43 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "NetworkSettings",
+    "doc": "NetworkSettings Model",
+    "fields": [
+        {
+            "name": "IPAddress",
+            "type": "string"
+        },
+        {
+            "name": "IPPrefixLen",
+            "type": "int"
+        },
+        {
+            "name": "Gateway",
+            "type": "string"
+        },
+        {
+            "name": "Bridge",
+            "type": "string"
+        },
+        {
+            "name": "PortMapping",
+            "type": {
+                "type": "map",
+                "values": {
+                    "type": "map",
+                    "values": "string"
+                }
+            },
+            "default": {}
+        },
+        {
+            "name": "Ports",
+            "type": {
+                "type": "array",
+                "items": "Ports"
+            },
+            "default": []
+        }
+    ]
+}

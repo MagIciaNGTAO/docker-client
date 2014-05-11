@@ -1,0 +1,36 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "ImageStatus",
+    "doc": "ImageStatus Model",
+    "fields": [
+        {
+            "javaAnnotation": [
+                "com.fasterxml.jackson.annotation.JsonProperty(\"id\")"
+            ],
+            "name": "Id",
+            "type": "string"
+        },
+        {
+            "javaAnnotation": [
+                "com.fasterxml.jackson.annotation.JsonProperty(\"status\")"
+            ],
+            "name": "Status",
+            "type": "string"
+        },
+        {
+            "javaAnnotation": [
+                "com.fasterxml.jackson.annotation.JsonProperty(\"error\")"
+            ],
+            "name": "Error",
+            "type": "string"
+        },
+        {
+            "javaAnnotation": [
+                "com.fasterxml.jackson.annotation.JsonProperty(\"progressDetail\")"
+            ],
+            "name": "ProgressDetail",
+            "type": "string"
+        }
+    ]
+}

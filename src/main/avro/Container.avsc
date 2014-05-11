@@ -1,0 +1,40 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "Container",
+    "doc": "Container Model",
+    "fields": [
+        {
+            "name": "Id",
+            "type": "string"
+        },
+        {
+            "name": "Image",
+            "type": "string"
+        },
+        {
+            "name": "Command",
+            "type": "string"
+        },
+        {
+            "name": "Created",
+            "type": "long"
+        },
+        {
+            "name": "Status",
+            "type": "string"
+        },
+        {
+            "name": "Ports",
+            "type": {
+                "type": "array",
+                "items": "Ports"
+            },
+            "default": []
+        },
+        {
+            "name": "SizeRw",
+            "type": "long"
+        }
+    ]
+}

@@ -1,0 +1,96 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "HostConfig",
+    "doc": "HostConfig Model",
+    "fields": [
+        {
+            "name": "Binds",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "ContainerIDFile",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "LxcConf",
+            "type": {
+                "type": "map",
+                "values": "string"
+            },
+            "default": {}
+        },
+        {
+            "name": "Privileged",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "PortBindings",
+            "type": {
+                "type": "map",
+                "values": {
+                    "type": "array",
+                    "items": "PortBinding"
+                }
+            },
+            "default": {}
+        },
+        {
+            "name": "Links",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "PublishAllPorts",
+            "type": "boolean",
+            "default": false
+        },
+        {
+            "name": "Dns",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "DnsSearch",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "VolumesFrom",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "NetworkMode",
+            "type": "string",
+            "default": "bridge"
+        },
+        {
+            "name": "queryParams",
+            "doc": "Query parameters associated with a request.\n Used to add parameter such as 'name' when creating a container.",
+            "type": {
+                "type": "map",
+                "values": []
+            },
+            "default": {}
+        }
+    ]
+}

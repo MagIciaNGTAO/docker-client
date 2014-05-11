@@ -1,0 +1,388 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "InspectResponse",
+    "doc": "InspectResponse Model",
+    "fields": [
+        {
+            "javaAnnotation": [
+                "com.fasterxml.jackson.annotation.JsonProperty(\"ID\")"
+            ],
+            "name": "Id",
+            
+            "doc": "TODO: remove annotation once this issue is resolved: https://github.com/dotcloud/docker/issues/1011",
+            "type": "string"
+        },
+        {
+            "name": "Image",
+            "type": "string"
+        },
+        {
+            "name": "Created",
+            "type": "string"
+        },
+        {
+            "name": "Path",
+            "type": "string"
+        },
+        {
+            "name": "Args",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "ResolvConfPath",
+            "type": "string"
+        },
+        {
+            "name": "HostnamePath",
+            "type": "string"
+        },
+        {
+            "name": "Name",
+            "type": "string"
+        },
+        {
+            "name": "Driver",
+            "type": "string"
+        },
+        {
+            "name": "ExecDriver",
+            "type": "string"
+        },
+        {
+            "name": "MountLabel",
+            "type": "string"
+        },
+        {
+            "name": "ProcessLabel",
+            "type": "string"
+        },
+        {
+            "name": "Volumes",
+            "type": {
+                "type": "map",
+                "values": "string"
+            },
+            "default": {}
+        },
+        {
+            "name": "VolumesRW",
+            "type": {
+                "type": "map",
+                "values": "string"
+            },
+            "default": {}
+        },
+        {
+            "name": "Config",
+            "type": {
+                "type": "record",
+                "name": "InspectConfig",
+                "doc": "InspectConfig Model",
+                "fields": [
+                    {
+                        "name": "Name",
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "Hostname",
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "Domainname",
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "User",
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "Memory",
+                        "type": "long",
+                        "default": 0
+                    },
+                    {
+                        "name": "MemorySwap",
+                        "type": "long",
+                        "default": 0
+                    },
+                    {
+                        "name": "CpuShares",
+                        "type": "int",
+                        "default": 0
+                    },
+                    {
+                        "name": "AttachStdin",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "AttachStdout",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "AttachStderr",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "Tty",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "OpenStdin",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "StdinOnce",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "PortSecs",
+                        "type": {
+                            "type": "map",
+                            "values": {
+                                "type": "map",
+                                "values": "string"
+                            }
+                        },
+                        "default": {}
+                    },
+                    {
+                        "name": "ExposedPorts",
+                        "type": {
+                            "type": "map",
+                            "values": "PortBinding"
+                        },
+                        "default": {}
+                    },
+                    {
+                        "name": "Env",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "Cmd",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "Image",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Volumes",
+                        "type": {
+                            "type": "map",
+                            "values": {
+                                "type": "map",
+                                "values": "string"
+                            }
+                        },
+                        "default": {}
+                    },
+                    {
+                        "name": "WorkingDir",
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "Entrypoint",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "NetworkDisabled",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "OnBuild",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "State",
+            "type": {
+                "type": "record",
+                "name": "InspectState",
+                "doc": "InspectState Model",
+                "fields": [
+                    {
+                        "name": "Running",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Pid",
+                        "type": "int"
+                    },
+                    {
+                        "name": "ExitCode",
+                        "type": "int"
+                    },
+                    {
+                        "name": "StartedAt",
+                        "type": "string"
+                    },
+                    {
+                        "name": "FinishedAt",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "NetworkSettings",
+            "type": {
+                "type": "record",
+                "name": "InspectNetworkSettings",
+                "doc": "InspectNetworkSettings Model",
+                "fields": [
+                    {
+                        "name": "IPAddress",
+                        "type": "string"
+                    },
+                    {
+                        "name": "IPPrefixLen",
+                        "type": "int"
+                    },
+                    {
+                        "name": "Gateway",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Bridge",
+                        "type": "string"
+                    },
+                    {
+                        "name": "PortMapping",
+                        "type": {
+                            "type": "map",
+                            "values": {
+                                "type": "map",
+                                "values": "string"
+                            }
+                        },
+                        "default": {}
+                    }
+                ]
+            }
+        },
+        {
+            "name": "HostConfig",
+            "type": {
+                "type": "record",
+                "name": "InspectHostConfig",
+                "doc": "InspectHostConfig Model",
+                "fields": [
+                    {
+                        "name": "Binds",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "ContainerIDFile",
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "LxcConf",
+                        "type": {
+                            "type": "map",
+                            "values": "string"
+                        },
+                        "default": {}
+                    },
+                    {
+                        "name": "Privileged",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "PortBindings",
+                        "type": {
+                            "type": "map",
+                            "values": {
+                                "type": "array",
+                                "items": "PortBinding"
+                            }
+                        },
+                        "default": {}
+                    },
+                    {
+                        "name": "Links",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "PublishAllPorts",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "Dns",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "DnsSearch",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "VolumesFrom",
+                        "type": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "default": []
+                    },
+                    {
+                        "name": "NetworkMode",
+                        "type": "string",
+                        "default": "bridge"
+                    }
+                ]
+            }
+        }
+    ]
+}

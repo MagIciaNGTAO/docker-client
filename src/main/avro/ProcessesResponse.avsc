@@ -1,0 +1,27 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "ProcessesResponse",
+    "doc": "Processes Model",
+    "fields": [
+        {
+            "name": "Titles",
+            "type": {
+                "type": "array",
+                "items": "string"
+            },
+            "default": []
+        },
+        {
+            "name": "Processes",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "array",
+                    "items": "string"
+                }
+            },
+            "default": []
+        }
+    ]
+}

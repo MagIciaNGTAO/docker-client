@@ -1,0 +1,17 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "PortBinding",
+    "doc": "PortBinding Model",
+    "fields": [
+        {
+            "name": "HostIp",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "HostPort",
+            "type": "int"
+        }
+    ]
+}

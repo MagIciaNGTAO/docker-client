@@ -1,0 +1,20 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "Ports",
+    "doc": "Ports Model",
+    "fields": [
+        {
+            "name": "PrivatePort",
+            "type": "int"
+        },
+        {
+            "name": "PublicPort",
+            "type": "int"
+        },
+        {
+            "name": "Type",
+            "type": "string"
+        }
+    ]
+}
