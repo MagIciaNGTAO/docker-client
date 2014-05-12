@@ -21,5 +21,5 @@ package com.fitbur.docker.client.topic.event;
  */
 public enum ContainerEvent {
 
-    CREATED, STARTED, STOPPED, KILLED
+    CREATED, STARTED, STOPPED, KILLED, REMOVED
 }

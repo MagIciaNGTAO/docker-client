@@ -23,7 +23,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import org.glassfish.hk2.api.Factory;
 import org.jvnet.hk2.annotations.Service;
 
@@ -61,16 +60,6 @@ public class StartBusyBoxContainer implements Factory<CreateResponse> {
 
     @Override
     public void dispose(CreateResponse response) {
-        WebTarget target = client.target()
-                .path("containers")
-                .path(response.getId())
-                .path("stop");
-
-        target.request(APPLICATION_JSON)
-                .post(null);
-
-        client.publish(new ContainerTopic(response.getId(), ContainerEvent.STOPPED));
-
     }
 
 }
