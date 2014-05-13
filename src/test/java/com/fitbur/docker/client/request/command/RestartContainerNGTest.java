@@ -13,13 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fitbur.docker.client.topic.event;
+package com.fitbur.docker.client.request.command;
+
+import com.fitbur.docker.client.DockerClient;
+import com.fitbur.docker.client.model.CreateResponse;
+import javax.inject.Inject;
+import javax.inject.Named;
+import org.jvnet.testing.hk2testng.HK2;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author Sharmarke Aden
  */
-public enum ContainerEvent {
+@HK2
+public class RestartContainerNGTest {
 
-    CREATED, STARTED, STOPPED, KILLED, REMOVED, RESTARTED, EXPORTED
+    @Inject
+    RestartContainer sut;
+    @Inject
+    DockerClient client;
+    @Named("running")
+    @Inject
+    CreateResponse createResponse;
+
+    @Test
+    public void givenContainerIdRequestShouldStopContainer() {
+        client.request(createResponse.getId(), sut);
+    }
+
 }

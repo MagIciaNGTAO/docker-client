@@ -1,0 +1,16 @@
+{
+    "type": "record",
+    "namespace": "com.fitbur.docker.client.model",
+    "name": "Change",
+    "doc": "Change Model",
+    "fields": [
+        {
+            "name": "Path",
+            "type": "string"
+        },
+        {
+            "name": "Kind",
+            "type": "int"
+        }
+    ]
+}

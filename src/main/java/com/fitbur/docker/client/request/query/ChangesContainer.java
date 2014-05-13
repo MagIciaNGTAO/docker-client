@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fitbur.docker.client.request.command;
+package com.fitbur.docker.client.request.query;
 
 import com.fitbur.docker.client.DockerClient;
 import com.fitbur.docker.client.DockerClientException;
-import com.fitbur.docker.client.request.TriCommand;
-import com.fitbur.docker.client.topic.ContainerTopic;
-import com.fitbur.docker.client.topic.event.ContainerEvent;
-import java.util.Map;
+import com.fitbur.docker.client.model.Change;
+import com.fitbur.docker.client.request.BiQuery;
+import java.util.List;
 import java.util.Optional;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import javax.ws.rs.core.Response;
 import org.jvnet.hk2.annotations.Service;
@@ -32,33 +32,31 @@ import org.jvnet.hk2.annotations.Service;
  * @author Sharmarke Aden
  */
 @Service
-public class StopContainer implements TriCommand<String, Map<String, Object>> {
+public class ChangesContainer implements BiQuery<String, List<Change>> {
 
     @Override
-    public void execute(DockerClient client,
-            Optional<String> containerId,
-            Optional<Map<String, Object>> queryParams) {
+    public List<Change> execute(DockerClient client,
+            Optional<String> containerId) {
 
         WebTarget target = client.target()
                 .path("containers")
                 .path(containerId.get())
-                .path("stop");
-
-        if (queryParams.isPresent()) {
-            for (Map.Entry<String, Object> param : queryParams.get().entrySet()) {
-                target = target.queryParam(param.getKey(), param.getValue());
-            }
-        }
+                .path("changes");
 
         Response response = target
                 .request(APPLICATION_JSON)
-                .post(null);
+                .get();
 
-        if (response.getStatus() >= 400) {
+        List<Change> changes;
+
+        if (response.getStatus() < 400) {
+            changes = response.readEntity(new GenericType<List<Change>>() {
+            });
+
+        } else {
             throw new DockerClientException(response.readEntity(String.class));
         }
 
-        client.publish(new ContainerTopic(containerId.get(), ContainerEvent.STOPPED));
-
+        return changes;
     }
 }

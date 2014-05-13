@@ -18,9 +18,9 @@ package com.fitbur.docker.client.request.command;
 import com.fitbur.docker.client.DockerClient;
 import com.fitbur.docker.client.DockerClientException;
 import com.fitbur.docker.client.request.TriCommand;
-import com.fitbur.docker.client.topic.ContainerTopic;
-import com.fitbur.docker.client.topic.event.ContainerEvent;
-import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Optional;
 import javax.ws.rs.client.WebTarget;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -32,33 +32,39 @@ import org.jvnet.hk2.annotations.Service;
  * @author Sharmarke Aden
  */
 @Service
-public class StopContainer implements TriCommand<String, Map<String, Object>> {
+public class LogsContainer implements TriCommand<String, OutputStream> {
 
     @Override
     public void execute(DockerClient client,
             Optional<String> containerId,
-            Optional<Map<String, Object>> queryParams) {
+            Optional<OutputStream> outputStream) {
 
         WebTarget target = client.target()
                 .path("containers")
                 .path(containerId.get())
-                .path("stop");
-
-        if (queryParams.isPresent()) {
-            for (Map.Entry<String, Object> param : queryParams.get().entrySet()) {
-                target = target.queryParam(param.getKey(), param.getValue());
-            }
-        }
+                .path("logs");
 
         Response response = target
                 .request(APPLICATION_JSON)
-                .post(null);
+                .get();
 
         if (response.getStatus() >= 400) {
             throw new DockerClientException(response.readEntity(String.class));
         }
 
-        client.publish(new ContainerTopic(containerId.get(), ContainerEvent.STOPPED));
+        InputStream input = response.readEntity(InputStream.class);
+        OutputStream output = outputStream.get();
 
+        try {
+            int n;
+            byte[] buffer = new byte[1024];
+            while ((n = input.read(buffer)) > -1) {
+                output.write(buffer, 0, n);
+            }
+            output.close();
+        }
+        catch (IOException e) {
+            throw new DockerClientException("error gettng container logs", e);
+        }
     }
 }

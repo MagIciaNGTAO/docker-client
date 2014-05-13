@@ -32,7 +32,7 @@ import org.jvnet.hk2.annotations.Service;
  * @author Sharmarke Aden
  */
 @Service
-public class StopContainer implements TriCommand<String, Map<String, Object>> {
+public class KillContainer implements TriCommand<String, Map<String, Object>> {
 
     @Override
     public void execute(DockerClient client,
@@ -42,7 +42,7 @@ public class StopContainer implements TriCommand<String, Map<String, Object>> {
         WebTarget target = client.target()
                 .path("containers")
                 .path(containerId.get())
-                .path("stop");
+                .path("kill");
 
         if (queryParams.isPresent()) {
             for (Map.Entry<String, Object> param : queryParams.get().entrySet()) {
@@ -58,7 +58,7 @@ public class StopContainer implements TriCommand<String, Map<String, Object>> {
             throw new DockerClientException(response.readEntity(String.class));
         }
 
-        client.publish(new ContainerTopic(containerId.get(), ContainerEvent.STOPPED));
+        client.publish(new ContainerTopic(containerId.get(), ContainerEvent.KILLED));
 
     }
 }

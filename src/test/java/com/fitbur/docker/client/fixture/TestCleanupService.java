@@ -18,8 +18,8 @@ package com.fitbur.docker.client.fixture;
 import com.fitbur.docker.client.DockerClient;
 import com.fitbur.docker.client.topic.ContainerTopic;
 import com.fitbur.docker.client.topic.ImageTopic;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
@@ -36,8 +36,8 @@ import org.jvnet.hk2.annotations.Service;
 @Service
 public class TestCleanupService {
 
-    List<String> containerIds;
-    List<String> imageNames;
+    Set<String> containerIds;
+    Set<String> imageNames;
     private final DockerClient client;
 
     @Inject
@@ -47,38 +47,42 @@ public class TestCleanupService {
 
     @PostConstruct
     void init() {
-        containerIds = new ArrayList<>();
-        imageNames = new ArrayList<>();
+        containerIds = new HashSet<>();
+        imageNames = new HashSet<>();
     }
 
     @PreDestroy
     void cleanupContainers() {
-        for (String containerId : containerIds) {
-            System.out.println("Stopping Container: " + containerId);
-            client.target()
+        containerIds.stream()
+                .forEach((containerId) -> {
+                    System.out.println("Stopping Container: " + containerId);
+
+                    client.target()
                     .path("containers")
                     .path(containerId)
                     .path("stop")
                     .request(APPLICATION_JSON)
                     .post(null);
 
-            System.out.println("Removing Container: " + containerId);
-            client.target()
+                    System.out.println("Removing Container: " + containerId);
+
+                    client.target()
                     .path("containers")
                     .path(containerId)
                     .request(APPLICATION_JSON)
                     .delete();
-        }
+                });
 
-        for (String imageName : imageNames) {
-            System.out.println("Removing Image: " + imageName);
+        imageNames.stream()
+                .forEach((imageName) -> {
+                    System.out.println("Removing Image: " + imageName);
 
-            client.target()
+                    client.target()
                     .path("images")
                     .path(imageName)
                     .request(APPLICATION_JSON)
                     .delete();
-        }
+                });
     }
 
     public void containerTopic(@SubscribeTo ContainerTopic topic) {
